@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 
 import API from "../services/api";
@@ -21,11 +21,9 @@ function Workspace() {
     // Added
     const [language, setLanguage] = useState("C++");
 
-    useEffect(() => {
-        fetchQuestion();
-    }, []);
 
-    const fetchQuestion = async () => {
+
+   const fetchQuestion = useCallback(async () => {
         try {
             const res = await API.get(`/question/${id}`);
 
@@ -33,13 +31,15 @@ function Workspace() {
             setNotes(res.data.question.notes);
             setCode(res.data.question.code);
 
-            // Added
             setLanguage(res.data.question.language || "C++");
 
         } catch (err) {
             console.log(err);
         }
-    };
+    }, [id]);   
+    useEffect(() => {
+        fetchQuestion();
+    }, [fetchQuestion]);
 
    const saveData = async () => {
 
