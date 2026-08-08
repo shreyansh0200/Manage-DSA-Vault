@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import API from "../services/api";
 
+import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import StatsCard from "../components/StatsCard";
@@ -11,6 +12,7 @@ import "../styles/dashboard.css";
 
 function Dashboard() {
 
+const { user } = useAuth();
 const [questions, setQuestions] = useState([]);
 
 const [loading, setLoading] = useState(true);
@@ -142,12 +144,12 @@ const hardQuestions = filteredQuestions.filter(
                         <div
                             className="progress-fill"
                             style={{
-                                width: `${(questions.length / 200) * 100}%`
+                                width: `${(questions.length / (user?.maxQuestions || 200)) * 100}%`
                             }}
                         ></div>
                     </div>
 
-                    <p>{questions.length} / 200 Questions</p>
+                    <p>{questions.length} / {user?.maxQuestions || 200} Questions</p>
 
                     <div className="stats">
                         <StatsCard
