@@ -11,6 +11,9 @@ exports.register = async (req, res) => {
 
     try {
 
+        console.log('[DEBUG] Register request headers:', req.headers);
+        console.log('[DEBUG] Register request body:', req.body);
+
         const { fullname, email, password } = req.body;
 
         if (!fullname || !email || !password) {
@@ -96,6 +99,9 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
 
     try {
+
+        console.log('[DEBUG] Login request headers:', req.headers);
+        console.log('[DEBUG] Login request body:', req.body);
 
         const { email, password } = req.body;
 
