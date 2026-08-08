@@ -14,13 +14,9 @@ app.use(express.json());
 
 app.use(
     cors({
-        origin: [
-            "http://localhost:5173",
-            "http://localhost:3000",
-            "http://localhost:3001",
-            "http://127.0.0.1:3000",
-            "https://manage-dsa-vault.vercel.app",
-        ],
+        // Allow dynamic origins (handles Vercel preview domains). For stricter
+        // control, set an ALLOWED_ORIGINS env var and validate against it.
+        origin: true,
         credentials: true,
     })
 );
