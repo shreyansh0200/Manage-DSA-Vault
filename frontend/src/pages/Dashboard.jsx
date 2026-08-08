@@ -92,6 +92,10 @@ const hardQuestions = filteredQuestions.filter(
     (q) => q.difficulty === "Hard"
 );
 
+const questionLimit = user?.maxQuestions || 200;
+const createdCount = user?.createdQuestions || 0;
+const progressPercent = Math.min((createdCount / questionLimit) * 100, 100);
+
     return (
 
         <>
@@ -144,12 +148,12 @@ const hardQuestions = filteredQuestions.filter(
                         <div
                             className="progress-fill"
                             style={{
-                                width: `${(questions.length / (user?.maxQuestions || 200)) * 100}%`
+                                width: `${progressPercent}%`
                             }}
                         ></div>
                     </div>
 
-                    <p>{questions.length} / {user?.maxQuestions || 200} Questions</p>
+                    <p>{createdCount} / {questionLimit} Questions</p>
 
                     <div className="stats">
                         <StatsCard
