@@ -19,6 +19,8 @@ function Register() {
 
     });
 
+    const [submitting, setSubmitting] = useState(false);
+
     const handleChange = (e) => {
 
         setForm({
@@ -35,6 +37,10 @@ function Register() {
 
         e.preventDefault();
 
+        if (submitting) return;
+
+        setSubmitting(true);
+
         try {
 
             await API.post("/auth/register", form);
@@ -48,6 +54,12 @@ function Register() {
         catch (error) {
 
             alert(error.response?.data?.message || "Registration Failed");
+
+        }
+
+        finally {
+
+            setSubmitting(false);
 
         }
 
@@ -88,9 +100,9 @@ function Register() {
                     required
                 />
 
-                <button type="submit">
+                <button type="submit" disabled={submitting}>
 
-                    Register
+                    {submitting ? "Registering..." : "Register"}
 
                 </button>
 
