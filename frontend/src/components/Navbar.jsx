@@ -19,11 +19,23 @@ function Navbar() {
 
         <div className="navbar">
 
-            <h2>Manage DSA Vault</h2>
+            <div className="brand-block">
+
+                <div className="brand-icon">🧠</div>
+
+                <div>
+
+                    <h2>ManageDSA Vault</h2>
+
+                    <p>Your cozy practice hub</p>
+
+                </div>
+
+            </div>
 
             <div className="nav-right">
 
-                <span>{user?.fullname}</span>
+                <span className="user-chip">{user?.fullname || "Learner"}</span>
 
                 <button onClick={handleLogout}>
 

@@ -108,7 +108,22 @@ const progressPercent = Math.min((createdCount / questionLimit) * 100, 100);
 
                 <div className="dashboard-content">
 
-                    <h2>Workspace</h2>
+                    <div className="dashboard-hero">
+
+                        <div>
+
+                            <p className="eyebrow">Warm learning hub</p>
+
+                            <h2>Welcome back{user?.fullname ? `, ${user?.fullname}` : ""}</h2>
+
+                            <p>Track your DSA growth and keep your practice feeling calm and focused.</p>
+
+                        </div>
+
+                        <div className="hero-pill">☕ Focus mode</div>
+
+                    </div>
+
                     <input
                         className="search-box"
                         type="text"

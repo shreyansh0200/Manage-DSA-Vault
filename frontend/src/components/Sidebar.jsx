@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Sidebar() {
 
@@ -6,23 +6,25 @@ function Sidebar() {
 
         <div className="sidebar">
 
-            <Link to="/dashboard">
+            <div className="sidebar-brand">Study Space</div>
+
+            <NavLink to="/dashboard" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
 
                 Dashboard
 
-            </Link>
+            </NavLink>
 
-            <Link to="/upload">
+            <NavLink to="/upload" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
 
                 Upload Question
 
-            </Link>
+            </NavLink>
 
-            <Link to="/profile">
+            <NavLink to="/profile" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
 
                 Profile
 
-            </Link>
+            </NavLink>
 
         </div>
 
